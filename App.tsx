@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Pal from './Objects/Pal'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>EarthPal in all it's beautiful glory will go here!</Text>
+      <Pal />
       <StatusBar style="auto" />
     </View>
   );
@@ -14,7 +15,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
+    color: "#FFF",
     alignItems: 'center',
     justifyContent: 'center',
   },
