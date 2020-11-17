@@ -10,6 +10,15 @@ import MainPalScreen from "./screens/MainPalScreen"
 
 const Stack = createStackNavigator();
 
+// cute lil trim function
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function() 
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
+
 export default function App() {
   return (
     <NavigationContainer>

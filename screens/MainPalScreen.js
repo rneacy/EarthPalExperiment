@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const MainPalScreen =  ({navigation}) => {
+const MainPalScreen =  ({navigation, route}) => {
     return (
         <View>
             <Text>Hiya</Text>
