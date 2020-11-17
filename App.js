@@ -33,7 +33,7 @@ export default function App() {
         initialRouteName = {"setup"}
       >
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup"}}></Stack.Screen>
-        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "uh oh stinky poo"}}></Stack.Screen>
+        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "My EarthPal"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
