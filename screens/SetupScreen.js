@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { styles } from '../util/Styles'
 import { FormEntry } from '../objects/Form'
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
+import { Email } from '../smtp'
 
 const SetupScreen = ({navigation}) => {
     const [palString, setPalString] = React.useState('');
@@ -20,6 +21,24 @@ const SetupScreen = ({navigation}) => {
                 }}
             >
                 Generate Pal
+            </AwesomeButtonC137>
+            <AwesomeButtonC137
+                stretch
+                onPress = { () => {
+                    Email.send({
+                        Host: "smtp.gmail.com",
+                        Username: "earthpalinc@gmail.com",
+                        Password: "PfKW499rfJkRTYa",
+                        To: "earthpalinc@gmail.com",
+                        From: "earthpalinc@gmail.com",
+                        Subject: "EarthPal Study Results",
+                        Body: "Hello!"
+                    }).then (
+                        message => console.log(message)
+                    );
+                }}
+            >
+                Test Email
             </AwesomeButtonC137>
         </View>
     );
