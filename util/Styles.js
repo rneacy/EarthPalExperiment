@@ -5,9 +5,15 @@ export const styles = StyleSheet.create({
       flex: 1,
     },
     home: {
-      
       justifyContent: "center",
       paddingHorizontal: 20
+    },
+    main: {
+      flex: 1,
+      justifyContent: "center",
+      textAlign: "center",
+      padding: 30,
+      backgroundColor: "black"
     },
     titleText: {
       fontSize: 30,
@@ -15,5 +21,11 @@ export const styles = StyleSheet.create({
       lineHeight: 70,
       textAlign: "center",
       textAlignVertical: "center",
+    },
+    normalText: {
+      fontSize: 20,
+      color: "#fff",
+      textAlign: "center",
+      textAlignVertical: "center"
     }
   });

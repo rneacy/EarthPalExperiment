@@ -7,6 +7,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 
 import SetupScreen from "./screens/SetupScreen"
 import MainPalScreen from "./screens/MainPalScreen"
+import NarrativeScreen from './screens/NarrativeScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,8 +33,9 @@ export default function App() {
         }}
         initialRouteName = {"setup"}
       >
-        <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup"}}></Stack.Screen>
-        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "uh oh stinky poo"}}></Stack.Screen>
+        <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{headerShown: false, headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

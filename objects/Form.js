@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView, TextInput , StyleSheet, Button } from 'r
 
 export const FormEntry = (props) => {
     const [value, onChangeText] = React.useState('');
+
     return (
       <>
         <View style = {{flex: 1, flexDirection: "row", marginBottom: 60}}>
