@@ -25,23 +25,26 @@ const BaseImages = {
 
 const Pal = (props) => {
     let valenceIndex = Math.floor(((10 * (props.palScore / bestScore)) / 3) - 1)
-    if (valenceIndex < 0) valenceIndex = 0
+    if (valenceIndex < 0 || valenceIndex === NaN) valenceIndex = 0
 
     return (
         <>
             <Image
                 source={BaseImages[valenceIndex]["globe"]}
-                style={{width: Dimensions.get('window').width  , height: Dimensions.get('window').width  , position: "absolute"}}
+                style={{width: Dimensions.get('window').width, 
+                height: Dimensions.get('window').width  , position: "absolute"}}
             > 
             </Image>
             <Image
                 source={BaseImages[valenceIndex]["eyes"]}
-                style={{width: Dimensions.get('window').width , height: Dimensions.get('window').width  , position: "absolute"}}
+                style={{width: Dimensions.get('window').width, 
+                height: Dimensions.get('window').width  , position: "absolute"}}
             >
             </Image>
             <Image
                 source={BaseImages[valenceIndex]["mouth"]}
-                style={{width: Dimensions.get('window').width , height: Dimensions.get('window').width  , position: "absolute"}}
+                style={{width: Dimensions.get('window').width, 
+                height: Dimensions.get('window').width  , position: "absolute"}}
             >
             </Image> 
         </>
