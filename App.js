@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+
+import SetupScreen from "./screens/SetupScreen"
 import MainPalScreen from "./screens/MainPalScreen"
 
 const Stack = createStackNavigator();
@@ -19,8 +21,9 @@ export default function App() {
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
-        initialRouteName = {"mainpal"}
+        initialRouteName = {"setup"}
       >
+        <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup"}}></Stack.Screen>
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "uh oh stinky poo"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
