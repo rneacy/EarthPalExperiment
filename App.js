@@ -34,7 +34,7 @@ export default function App() {
         initialRouteName = {"setup"}
       >
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
-        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{headerShown: false, headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
