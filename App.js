@@ -26,7 +26,7 @@ export default function App() {
       <Stack.Navigator
         screenOptions = {{
           headerStyle: {
-            backgroundColor: "#44aa44"
+            backgroundColor: "#566A93"
           },
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
