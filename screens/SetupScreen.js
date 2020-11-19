@@ -34,10 +34,22 @@ const SetupScreen = ({navigation}) => {
                     if (order[0] === 0) {
                         // Show personal data
                         order.shift(); //! REMOVE (DON'T REMOVE IF YOU'RE NOT ROSS)
-                        navigation.navigate("narrative", { order: order })
+                        //navigation.navigate("narrative", { order: order })
+                        navigation.reset({
+                            index: 0,
+                            routes: [
+                                { name: "narrative", params: { order: order }}
+                            ]
+                        })
                     }
                     else {
-                        navigation.navigate("narrative", { order: order })
+                        //navigation.navigate("narrative", { order: order })
+                        navigation.reset({
+                            index: 0,
+                            routes: [
+                                { name: "narrative", params: { order: order }}
+                            ]
+                        })
                     }
                 }}
             >

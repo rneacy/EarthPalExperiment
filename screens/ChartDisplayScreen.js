@@ -4,12 +4,21 @@ import { styles } from '../util/Styles';
 import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
 import { useNavigationBuilder } from '@react-navigation/native';
+import { screenDelay } from '../util/etc'
 
 const data = [
     { name: 1, value: 15 }
 ];
 
 const ChartDisplayScreen = ({navigation, route}) => {
+    // Delay their exit from the screen
+    const [buttonDisabled, setButtonDisabled] = React.useState(true);
+    React.useEffect( () => {
+        if(buttonDisabled) {
+            setTimeout(() => {setButtonDisabled(false)}, screenDelay);
+        }
+    })
+
     return (
         <View style={styles.main}>
             <View style={{backgroundColor: "white", borderRadius: 10}}>
@@ -20,9 +29,16 @@ const ChartDisplayScreen = ({navigation, route}) => {
 
             <AwesomeButtonC137 
                 stretch 
+                disabled={buttonDisabled}
                 style={{marginTop:30}}
                 onPress = { () => {
-                    navigation.navigate("mainpal", { order: route.params.order, parsedPal: route.params.data })
+                    //navigation.navigate("mainpal", { order: route.params.order, parsedPal: route.params.data })
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.data }}
+                        ]
+                    })
                 }}
             >
                 Next

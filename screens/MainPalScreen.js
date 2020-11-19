@@ -4,8 +4,17 @@ import { styles } from '../util/Styles'
 import Pal from '../objects/Pal'
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
 import { shuffle } from '../util/Funcs'
+import { screenDelay } from '../util/etc'
 
 const MainPalScreen =  ({navigation, route}) => {
+    // Delay their exit from the screen
+    const [buttonDisabled, setButtonDisabled] = React.useState(true);
+    React.useEffect( () => {
+        if(buttonDisabled) {
+            setTimeout(() => {setButtonDisabled(false)}, screenDelay);
+        }
+    })
+
     const combos = {
         0: ["basic", "static"],
         1: ["basic", "anim"],
@@ -30,6 +39,7 @@ const MainPalScreen =  ({navigation, route}) => {
 
             <AwesomeButtonC137
                 stretch
+                disabled={buttonDisabled}
                 onPress = { () => {
                     //! REMOVE THIS WHEN SURVEY SCREEN AVAILABLE/PERMUTATIONS IMPLEMENTED!!!
                     let newOrder = route.params.order;
@@ -37,9 +47,20 @@ const MainPalScreen =  ({navigation, route}) => {
                     if(newOrder[0] === 0) newOrder.shift() //bypass personal data for now
                     if(newOrder.length >= 1){
                         navigation.navigate("narrative", { order: newOrder })
+                        navigation.reset({
+                            index: 0,
+                            routes: [
+                                { name: "narrative", params: { order: newOrder }}
+                            ]
+                        })
                     }
                     else {
-                        navigation.navigate("thanks")
+                        navigation.reset({
+                            index: 0,
+                            routes: [
+                                { name: "thanks" }
+                            ]
+                        })
                     }
                 }}
                 style = {{position: "absolute", top: Dimensions.get("window").height - 150}}
