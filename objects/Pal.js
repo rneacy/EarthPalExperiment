@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, Dimensions } from 'react-native'
+import { Text, Image, Dimensions, View } from 'react-native'
 import { styles } from '../util/Styles'
 
 const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};

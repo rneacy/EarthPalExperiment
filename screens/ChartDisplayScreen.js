@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { styles } from '../util/Styles';
 import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
+import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
 
 const data = [
     { quarter: 1, earnings: 13000 },
@@ -18,6 +19,8 @@ const ChartDisplayScreen = ({navigation, params}) => {
                     <VictoryBar data={data} x="quarter" y="earnings" alignment="start" barRatio={0.8}/>
                 </VictoryChart>
             </View>
+
+            <AwesomeButtonC137 stretch style={{marginTop:30}}>Next</AwesomeButtonC137>
         </View>
     );
 }
