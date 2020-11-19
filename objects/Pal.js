@@ -27,6 +27,12 @@ const Pal = (props) => {
     let valenceIndex = Math.floor(((10 * (props.palScore / bestScore)) / 3) - 1)
     if (valenceIndex < 0 || valenceIndex === NaN) valenceIndex = 0
 
+    let interactivity = "basic"
+
+    if (props.interactivity !== "undefined"){
+        interactivity = props.interactivity;
+    }
+
     return (
         <>
             <Image

@@ -9,6 +9,7 @@ import SetupScreen from "./screens/SetupScreen";
 import MainPalScreen from "./screens/MainPalScreen";
 import NarrativeScreen from './screens/NarrativeScreen';
 import ChartDisplayScreen from './screens/ChartDisplayScreen';
+import ThanksScreen from './screens/ThanksScreen';
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ export default function App() {
       <Stack.Navigator
         screenOptions = {{
           headerStyle: {
-            backgroundColor: "#566A93"
+            backgroundColor: "#474889"
           },
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -38,6 +39,7 @@ export default function App() {
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="charts" component = {ChartDisplayScreen} options = {{title: "Chart", headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="thanks" component = {ThanksScreen} options = {{title: "Thank You!", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

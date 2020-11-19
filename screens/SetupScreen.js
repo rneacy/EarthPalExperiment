@@ -44,6 +44,15 @@ const SetupScreen = ({navigation}) => {
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
+                    navigation.navigate("thanks");
+                }}
+            >
+                Thanks Screen
+            </AwesomeButtonC137>
+
+            <AwesomeButtonC137
+                stretch
+                onPress = { () => {
                     Email.send({
                         Host: "smtp.gmail.com",
                         Username: "earthpalinc@gmail.com",
@@ -73,6 +82,9 @@ function evaluate(palString) {
 }
 
 //* Generate order of the study for randomisation
+//* The order will be passed with an index into each screen
+//* Once at the survey screen, submitting loads next one if index+1 < 4
+//* Otherwise, it will load the conclusion screen
 // 0 - Personal data, 1 - 3 Narratives
 function generateOrder() {
     const indices = [0,1,2,3]
