@@ -1,27 +1,27 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback, Animated} from 'react-native';
+import React,{Component} from 'react';
+import {View, Image, StyleSheet, Animated, Dimensions} from 'react-native';
+import {TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class Touch extends Component{
     constructor(props){
         super(props);
         this.state = {
             scaleAmount: new Animated.Value(1)
-        }
+        };
     }
 
-
-    pressIn(){
+    pressIn = () => {
         Animated.spring(this.state.scaleAmount, {
-            toValue: 0.5,
+            toValue: 1.1,
             useNativeDriver: true
         }).start()
     }
 
-    pressOut(){
+    pressOut = () => {
         Animated.spring(this.state.scaleAmount, {
             toValue: 1,
-            friction: 7,
-            tension: 40,
+            friction: 3,
+            tension: 100,
             useNativeDriver: true
         }).start()
     }
@@ -29,26 +29,25 @@ class Touch extends Component{
 
     render() {
         return (
-            <View>
             <TouchableWithoutFeedback
-                onPressIn = {this.pressIn.bind(this)}
-                onPressOut = {this.pressOut.bind(this)}
+                style = {{width: Dimensions.get('window').width  , height: Dimensions.get('window').height}} // move to Animated.Image?
+                onPressIn = {() => this.pressIn()}
+                onPressOut = {() => this.pressOut()}
             >
-                <Animated.View
-                    {...this.props}
-                    style={[
-                     {
-                            transform: [
-                             {
-                                scale: this.state.scaleAmount
-                            }]
-                     },
+            <Animated.View
+                //onLoad = {this.zoom}
+                {...this.props}
+                style={[
+                    {
+                        transform: [
+                            {scale: this.state.scaleAmount},
+                            {perspective: 1000}
+                        ]
+                    },
                     this.props.style,
-                 ]}
-                />
-        
+                ]}
+            />
             </TouchableWithoutFeedback>
-            </View>
         )
     }
 
