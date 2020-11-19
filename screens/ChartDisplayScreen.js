@@ -15,7 +15,7 @@ const ChartDisplayScreen = ({navigation, params}) => {
         <View style={styles.main}>
             <View style={{backgroundColor: "white", borderRadius: 10}}>
                 <VictoryChart width={Dimensions.get("window").width - 50} theme={VictoryTheme.material}>
-                    <VictoryBar data={data} x="quarter" y="earnings" />
+                    <VictoryBar data={data} x="quarter" y="earnings" alignment="start" barRatio={0.8}/>
                 </VictoryChart>
             </View>
         </View>
