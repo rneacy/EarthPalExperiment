@@ -22,6 +22,16 @@ const SetupScreen = ({navigation}) => {
             >
                 Generate Pal
             </AwesomeButtonC137>
+
+            <AwesomeButtonC137
+                stretch
+                onPress = { () => {
+                    navigation.navigate("charts");
+                }}
+            >
+                Chart Screen
+            </AwesomeButtonC137>
+
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
