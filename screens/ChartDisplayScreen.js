@@ -10,13 +10,10 @@ const data = [
 ];
 
 const ChartDisplayScreen = ({navigation, route}) => {
-
-    console.log("Chart order is: " + route.params.order)
-
     return (
         <View style={styles.main}>
             <View style={{backgroundColor: "white", borderRadius: 10}}>
-                <VictoryChart width={Dimensions.get("window").width - 50} theme={VictoryTheme.material}>
+                <VictoryChart width={Dimensions.get("window").width - 50} theme={VictoryTheme.grayscale}>
                     <VictoryBar data={[{name: 1, value: route.params.data}]} x="name" y="value" alignment="start" barRatio={0.8}/>
                 </VictoryChart>
             </View>

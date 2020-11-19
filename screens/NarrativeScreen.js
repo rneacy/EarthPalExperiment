@@ -11,15 +11,12 @@ const narratives = {
 
 const narrative_data = {
     1: 50,
-    2: 25,
+    2: 30,
     3: 0
 }
 
 const NarrativeScreen = ({navigation, route}) => {
     //* narrative number will be passed into params and then this will show correct one
-
-    console.log("Narrative order is: " + route.params.order)
-
     return (
         <View style={styles.main}>
             <Text style={styles.normalText}>

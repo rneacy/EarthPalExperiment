@@ -21,8 +21,6 @@ const MainPalScreen =  ({navigation, route}) => {
     }
     const innerOrder = shuffle([0,1,2,3,4,5,6,7,8])
 
-    console.log("Narrative order is: " + route.params.order)
-
     return (
         <View style={styles.main}>
             {/* <Text style={[styles.normalText, {fontSize: 25}]}>Your pal score:</Text>

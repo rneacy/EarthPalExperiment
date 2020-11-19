@@ -12,6 +12,21 @@ const SetupScreen = ({navigation}) => {
 
     return (
         <View style = {[styles.home, {paddingBottom: 20}]}>
+            <Text style={{textAlign: "center", padding: 5}}>Paste in the Pal Code we gave you below to start</Text>
+            <FormEntry label="Pal Code" callback={setPalString}/>
+            <AwesomeButtonC137
+                stretch
+                onPress = { () => {
+                    setParsedPal(evaluate(palString));
+                    navigation.navigate("mainpal", { parsedPal: parsedPal })
+                }}
+            >
+                Generate Pal
+            </AwesomeButtonC137>
+
+            <Text style={[styles.normalText, {paddingVertical:20, color:"black"}]}>
+                Test functions:
+            </Text>
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
@@ -27,17 +42,6 @@ const SetupScreen = ({navigation}) => {
                 }}
             >
                 Test Example Study
-            </AwesomeButtonC137>
-            <Text>Paste in the Pal Code we gave you below to start</Text>
-            <FormEntry label="Pal Code" callback={setPalString}/>
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    setParsedPal(evaluate(palString));
-                    navigation.navigate("mainpal", { parsedPal: parsedPal })
-                }}
-            >
-                Generate Pal
             </AwesomeButtonC137>
 
             <AwesomeButtonC137
