@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
@@ -25,6 +25,7 @@ if(typeof(String.prototype.trim) === "undefined")
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar backgroundColor="#474889" barStyle="light-content"/>
       <Stack.Navigator
         screenOptions = {{
           headerStyle: {
