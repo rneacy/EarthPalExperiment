@@ -3,24 +3,33 @@ import { View, Text, Dimensions } from 'react-native';
 import { styles } from '../util/Styles';
 import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
+import { useNavigationBuilder } from '@react-navigation/native';
 
 const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
+    { name: 1, value: 15 }
 ];
 
-const ChartDisplayScreen = ({navigation, params}) => {
+const ChartDisplayScreen = ({navigation, route}) => {
+
+    console.log("Chart order is: " + route.params.order)
+
     return (
         <View style={styles.main}>
             <View style={{backgroundColor: "white", borderRadius: 10}}>
                 <VictoryChart width={Dimensions.get("window").width - 50} theme={VictoryTheme.material}>
-                    <VictoryBar data={data} x="quarter" y="earnings" alignment="start" barRatio={0.8}/>
+                    <VictoryBar data={[{name: 1, value: route.params.data}]} x="name" y="value" alignment="start" barRatio={0.8}/>
                 </VictoryChart>
             </View>
 
-            <AwesomeButtonC137 stretch style={{marginTop:30}}>Next</AwesomeButtonC137>
+            <AwesomeButtonC137 
+                stretch 
+                style={{marginTop:30}}
+                onPress = { () => {
+                    navigation.navigate("mainpal", { order: route.params.order, parsedPal: route.params.data })
+                }}
+            >
+                Next
+            </AwesomeButtonC137>
         </View>
     );
 }

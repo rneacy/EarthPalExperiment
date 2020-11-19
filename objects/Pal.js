@@ -24,6 +24,7 @@ const BaseImages = {
 }
 
 const Pal = (props) => {
+    console.log(props.palScore)
     let valenceIndex = Math.floor(((10 * (props.palScore / bestScore)) / 3) - 1)
     if (valenceIndex < 0 || valenceIndex === NaN) valenceIndex = 0
 

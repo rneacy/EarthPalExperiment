@@ -4,13 +4,30 @@ import { styles } from '../util/Styles'
 import { FormEntry } from '../objects/Form'
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
 import { Email } from '../smtp'
+import { shuffle } from '../util/Funcs'
 
 const SetupScreen = ({navigation}) => {
     const [palString, setPalString] = React.useState('');
     const [parsedPal, setParsedPal] = React.useState(0);
 
     return (
-        <View style = {[styles.home, {paddingTop: 20}]}>
+        <View style = {[styles.home, {paddingBottom: 20}]}>
+            <AwesomeButtonC137
+                stretch
+                onPress = { () => {
+                    let order = shuffle([0,1,2,3]); // generates order of display
+                    if (order[0] === 0) {
+                        // Show personal data
+                        order.shift(); //! REMOVE (DON'T REMOVE IF YOU'RE NOT ROSS)
+                        navigation.navigate("narrative", { order: order })
+                    }
+                    else {
+                        navigation.navigate("narrative", { order: order })
+                    }
+                }}
+            >
+                Test Example Study
+            </AwesomeButtonC137>
             <Text>Paste in the Pal Code we gave you below to start</Text>
             <FormEntry label="Pal Code" callback={setPalString}/>
             <AwesomeButtonC137
@@ -90,15 +107,6 @@ function generateOrder() {
     const indices = [0,1,2,3]
     shuffle(indices)
     return indices
-}
-
-// Fisher-Yates shuffle
-function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
 }
 
 export default SetupScreen;

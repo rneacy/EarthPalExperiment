@@ -9,16 +9,32 @@ const narratives = {
     3: require("../assets/narratives/3.json").text
 }
 
+const narrative_data = {
+    1: 50,
+    2: 25,
+    3: 0
+}
+
 const NarrativeScreen = ({navigation, route}) => {
     //* narrative number will be passed into params and then this will show correct one
+
+    console.log("Narrative order is: " + route.params.order)
 
     return (
         <View style={styles.main}>
             <Text style={styles.normalText}>
-                { narratives[parseInt(route.params.narrative)] }
+                { narratives[parseInt(route.params.order[0])] }
             </Text>
 
-            <AwesomeButtonC137 stretch style={{marginTop:30}}>Next</AwesomeButtonC137>
+            <AwesomeButtonC137 
+                stretch 
+                style={{marginTop:30}}
+                onPress = { () => {
+                    navigation.navigate("charts", { order: route.params.order, data: narrative_data[parseInt(route.params.order[0])]})
+                }}
+            >
+                Next
+            </AwesomeButtonC137>
         </View>
     )
 }
