@@ -46,7 +46,7 @@ const MainPalScreen =  ({navigation, route}) => {
                     newOrder.shift() 
                     if(newOrder[0] === 0) newOrder.shift() //bypass personal data for now
                     if(newOrder.length >= 1){
-                        navigation.navigate("narrative", { order: newOrder })
+                        //navigation.navigate("narrative", { order: newOrder })
                         navigation.reset({
                             index: 0,
                             routes: [
