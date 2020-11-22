@@ -21,31 +21,37 @@ const BaseImages = {
         "globe": require("../assets/newPal/globe/globe-sad.png"),
         "eyes": require("../assets/newPal/eyes/eyes-sad-2.png"),
         "mouth": require("../assets/newPal/mouth/mouth-sad-2.png"),
+        "glow": require("../assets/newPal/glow/glow-sad.png")
     },
     4: {
         "globe": require("../assets/newPal/globe/globe-neutral.png"),
         "eyes": require("../assets/newPal/eyes/eyes-neutral-2.png"),
         "mouth": require("../assets/newPal/mouth/mouth-neutral-2.png"),
+        "glow": require("../assets/newPal/glow/glow-neutral.png")
     },
     3: {
         "globe": require("../assets/newPal/globe/globe-happy.png"),
         "eyes": require("../assets/newPal/eyes/eyes-happy-2.png"),
         "mouth": require("../assets/newPal/mouth/mouth-happy-2.png"),
+        "glow": require("../assets/newPal/glow/glow-happy.png")
     },
     2: {
         "globe": require("../assets/newPal/globe/globe-sad.png"),
         "eyes": require("../assets/newPal/eyes/eyes-sad-1.png"),
         "mouth": require("../assets/newPal/mouth/mouth-sad-1.png"),
+        "glow": require("../assets/newPal/glow/glow-sad.png")
     },
     1: {
         "globe": require("../assets/newPal/globe/globe-neutral.png"),
         "eyes": require("../assets/newPal/eyes/eyes-neutral-1.png"),
         "mouth": require("../assets/newPal/mouth/mouth-neutral-1.png"),
+        "glow": require("../assets/newPal/glow/glow-neutral.png")
     },
     0: {
         "globe": require("../assets/newPal/globe/globe-happy.png"),
         "eyes": require("../assets/newPal/eyes/eyes-happy-1.png"),
         "mouth": require("../assets/newPal/mouth/mouth-happy-1.png"),
+        "glow": require("../assets/newPal/glow/glow-happy.png")
     }
 }
 
@@ -56,33 +62,44 @@ class Pal extends Component{
         this.state = {
             valenceIndex: Math.floor(((10 * (this.props.palScore / bestScore)) / 3) - 1),
             interactivity: "inter",
-            detail: "medium",
+            detail: "high",
             // interactivity: this.props.interactivity,
             // detail: this.props.detail,
 
             renderTrees: false,
             renderTrash: false,
-            renderClouds: false
+            renderClouds: false,
+            renderGlow: false,
         };
         if(this.state.valenceIndex < 0){
             this.state.valenceIndex = 0
         }
 
-        if(this.state.detail == "medium"){
+        if(this.state.detail == "medium" || this.state.detail == "high"){
             if(this.state.valenceIndex == 0 || this.state.valenceIndex == 3){
                 //happy embellishments
+                console.log("happy?")
                 this.state.renderTrees = true
+                if(this.state.detail == "high"){
+                    this.state.renderGlow = true
+                }
             }
             if(this.state.valenceIndex == 1 || this.state.valenceIndex == 4){
                 //neutral embellishments
+                console.log("meh?")
+                if(this.state.detail == "high"){
+                    console.log("hmmm?")
+                    this.state.renderGlow = true
+                }
             }
             if(this.state.valenceIndex == 2 || this.state.valenceIndex == 5){
                 //sad embellishments
+                console.log("sad?")
                 this.state.renderTrash = true
                 this.state.renderClouds = true
-            }
-            if(this.state.detail == "high"){
-            
+                if(this.state.detail == "high"){
+                    this.state.renderGlow = true
+                }
             }
         }
 
@@ -115,6 +132,15 @@ class Pal extends Component{
                     onPressOut = {() => this.pressOut()}
                 >
                     <Poke interactivity = {this.state.interactivity} style = {styles.view}>
+                        <Feature
+                            // Glow
+                            source ={BaseImages[this.state.valenceIndex]["glow"]}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-70} scale = {1.4}
+                            //flip = {true}
+                            style={styles.feature}
+                            render = {this.state.renderGlow}
+                        />
 
                         {/* Clouds */}
                         <Feature
