@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { View, Image, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 import { styles } from '../util/Styles'
 import Feature from '../objects/Feature'
 import Idle from '../objects/Idle'
@@ -44,41 +44,6 @@ const BaseImages = {
     }
 }
 
-
-// const Pal = (props) => {
-//     valenceIndex = Math.floor(((10 * (props.palScore / bestScore)) / 3) - 1)
-//     if (valenceIndex < 0) valenceIndex = 0
-
-//     //let interactivity = "basic"
-//     //let interactivity = "anim"
-//     let interactivity = "inter"
-
-//     return (
-//         <Idle interactivity = {interactivity} style = {styles.feature}>
-//             <Poke interactivity = {interactivity}>
-//                 <Feature
-//                     interactivity = {interactivity}
-//                     source={BaseImages[valenceIndex]["globe"]}
-//                     altSource={BaseImages[1]["globe"]}
-//                     style={styles.feature}
-//                 />
-//                 <Feature
-//                     interactivity = {interactivity}
-//                     source={BaseImages[valenceIndex]["eyes"]}
-//                     altSource={BaseImages[1]["eyes"]}
-//                     style={styles.feature}
-//                 />
-//                 <Feature
-//                     interactivity = {interactivity}
-//                     source={BaseImages[valenceIndex]["mouth"]}
-//                     altSource={BaseImages[1]["mouth"]}
-//                     style={styles.feature}
-//                 />
-//             </Poke>
-//         </Idle>
-//     )
-// }
-
 class Pal extends Component{
     constructor(props){
         super(props);
@@ -113,7 +78,6 @@ class Pal extends Component{
                     style={{
                         width: Dimensions.get('window').width,
                         height: Dimensions.get('window').height,
-                        
                     }}
                     
                     onPressIn = {() => this.pressIn()}
