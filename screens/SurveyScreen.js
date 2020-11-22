@@ -37,14 +37,14 @@ const LikertScale = (props) => {
 }
 
 let likertScores = {
-	"valence": 0,
-	"arousal": 0,
-	"anxiety": 0,
-	"pride": 0,
-	"stress": 0,
-	"hope": 0,
-	"guilt": 0,
-	"compassion": 0
+	"valence": 1,
+	"arousal": 1,
+	"anxiety": 1,
+	"pride": 1,
+	"stress": 1,
+	"hope": 1,
+	"guilt": 1,
+	"compassion": 1
 }
 
 const SurveyScreen = ({navigation, route}) => {

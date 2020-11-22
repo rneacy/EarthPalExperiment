@@ -16,7 +16,7 @@ export function email(surveyData) {
         Password: "PfKW499rfJkRTYa",
         To: "earthpalinc@gmail.com",
         From: "earthpalinc@gmail.com",
-        Subject: "EarthPal Study Results",
+        Subject: "Results for: " + surveyData.name,
         Body: JSON.stringify(surveyData)
     }).then (
         message => console.log(message)
