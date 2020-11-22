@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
     container: {
@@ -12,13 +12,8 @@ export const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       textAlign: "center",
-<<<<<<< HEAD
-      //paddingTop: 150,
-      backgroundColor: "#474889",
-=======
-      paddingTop: 200,
-      backgroundColor: "#474889"
->>>>>>> b1151cdef26c79fd4be03ecb21f818ecb85e925d
+      padding: 30,
+      backgroundColor: "#566A93"
     },
     titleText: {
       fontSize: 30,
@@ -32,17 +27,5 @@ export const styles = StyleSheet.create({
       color: "#fff",
       textAlign: "center",
       textAlignVertical: "center"
-<<<<<<< HEAD
-    },
-    feature: {
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').width,
-      position: 'absolute',
-      //resizeMode: 'center'
-    },
-    
-  });
-=======
     }
   });
->>>>>>> b1151cdef26c79fd4be03ecb21f818ecb85e925d

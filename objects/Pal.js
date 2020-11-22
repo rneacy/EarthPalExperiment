@@ -1,6 +1,5 @@
-import React,{Component} from 'react';
-import { Text, Image, Dimensions, Animated, View } from 'react-native'
-import { Easing } from 'react-native-reanimated';
+import React from 'react';
+import { View, Image, Dimensions } from 'react-native'
 import { styles } from '../util/Styles'
 import Feature from '../objects/Feature'
 import Idle from '../objects/Idle'
@@ -44,9 +43,6 @@ const BaseImages = {
         "mouth": require("../assets/newPal/mouth/mouth-happy-1.png"),
     }
 }
-
-
-
 
 
 // const Pal = (props) => {
