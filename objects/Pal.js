@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { View, Image, Dimensions } from 'react-native'
 import { styles } from '../util/Styles'
 import Feature from '../objects/Feature'
