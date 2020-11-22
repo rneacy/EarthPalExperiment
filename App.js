@@ -39,7 +39,7 @@ export default function App() {
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
-        <Stack.Screen name="charts" component = {ChartDisplayScreen} options = {{title: "Chart", headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="charts" component = {ChartDisplayScreen} options = {{title: "Chart of Eco-Impact Score", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="thanks" component = {ThanksScreen} options = {{title: "Thank You!", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

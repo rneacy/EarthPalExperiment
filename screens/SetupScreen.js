@@ -59,7 +59,7 @@ const SetupScreen = ({navigation}) => {
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
-                    navigation.navigate("charts");
+                    navigation.navigate("charts", { data: 10 });
                 }}
             >
                 Chart Screen
