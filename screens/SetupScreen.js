@@ -6,6 +6,11 @@ import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c13
 import { Email } from '../smtp'
 import { shuffle } from '../util/Funcs'
 
+let otherPalString = "";
+let setOtherPalString = (text) => { otherPalString = text; }
+let otherParsedPal = 0;
+let setOtherParsedPal = (val) => { otherParsedPal = val; }
+
 const SetupScreen = ({navigation}) => {
     const [palString, setPalString] = React.useState('');
     const [parsedPal, setParsedPal] = React.useState(0);
@@ -13,15 +18,22 @@ const SetupScreen = ({navigation}) => {
     return (
         <View style = {[styles.home, {paddingBottom: 20}]}>
             <Text style={{textAlign: "center", padding: 5}}>Paste in the Pal Code we gave you below to start</Text>
-            <FormEntry label="Pal Code" callback={setPalString}/>
+            <FormEntry label="Pal Code" callback={setOtherPalString}/>
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
-                    setParsedPal(evaluate(palString));
-                    navigation.navigate("mainpal", { parsedPal: parsedPal })
+                    let order = shuffle([0,1,2,3])
+                    console.log(order)
+                    setOtherParsedPal(evaluate(otherPalString));
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal }}
+                        ]
+                    });
                 }}
             >
-                Generate Pal
+                Start Study
             </AwesomeButtonC137>
 
             <Text style={[styles.normalText, {paddingVertical:20, color:"black"}]}>

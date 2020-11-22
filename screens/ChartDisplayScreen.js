@@ -16,45 +16,16 @@ const green = "#00FF00"
 const grey = "#AAAAAA"
 
 function calcColor(dataVal) {
-    if (dataVal > -2 && dataVal < 2) {
+    if (dataVal > -5 && dataVal < 5) {
         return grey;
     }
-    else if (dataVal >= 2) {
+    else if (dataVal >= 5) {
         return red;
     }
     else {
         return green;
     }
 }
-
-// const newData = {
-//     data: {
-//         dataSets: [{
-//             values: [{y: dataVal}],
-//             label: 'poo',
-//             config: {
-//                 colors: [calcColor(dataVal)]
-//             }
-//         }]
-//     },
-//     xAxis: {
-//         enabled: false
-//     },
-//     yAxis: {
-//         left: {
-//             drawLabels: false,
-//             drawAxisLine: false,
-//             drawGridLines: false,
-//             zeroLine: {
-//                 enabled: true,
-//                 lineWidth: 1.5
-//             }
-//         },
-//         right: {
-//             enabled: false
-//         }
-//     }
-// }
 
 const ChartDisplayScreen = ({navigation, route}) => {
     // Delay their exit from the screen
@@ -66,8 +37,6 @@ const ChartDisplayScreen = ({navigation, route}) => {
     })
 
     const central = route.params.data - 25
-    console.log(route.params.data)
-    console.log(central)
 
     return (
         <View style={styles.main}>
@@ -82,7 +51,7 @@ const ChartDisplayScreen = ({navigation, route}) => {
                     <VictoryBar 
                         standalone={false} 
                         data={[{name: " ", value: central}]} 
-                        x = "name" 
+                        x="name" 
                         y="value" 
                         barRatio={5}
                         style={{data: {fill: calcColor(central)}}}
