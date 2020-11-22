@@ -35,7 +35,12 @@ const MainPalScreen =  ({navigation, route}) => {
             {/* <Text style={[styles.normalText, {fontSize: 25}]}>Your pal score:</Text>
             <Text style={styles.normalText}>{route.params.parsedPal}</Text>
             <Text style={[styles.normalText, {fontSize: 25, paddingTop:20}]}>Your pal is: </Text> */}
-            <Pal palScore={route.params.data} />
+      
+            <Pal 
+                palScore={route.params.parsedPal} 
+                detail={"high"} //this can be "basic", "medium" or "high"
+                interactivity={"inter"} //this can be "static", "anim" or "inter"
+            />
 
             <AwesomeButtonC137
                 stretch
