@@ -1,9 +1,16 @@
 import React,{Component} from 'react';
-import {View, Image, StyleSheet, Animated, Easing} from 'react-native';
+import {Animated, Easing, View, Dimensions} from 'react-native';
+import { styles } from '../util/Styles';
 
 class Idle extends Component{
     constructor(props){
         super(props);
+        this.animated = false;
+
+        if(this.props.interactivity == "anim" || this.props.interactivity == "inter"){
+            this.animated = true;
+        }
+
         this.state = {
             verticalValue: new Animated.Value(0),
             toValue: 50,
@@ -12,31 +19,33 @@ class Idle extends Component{
     }
 
     componentDidMount = () => {
-        Animated.timing(this.state.verticalValue, {
-            toValue: this.state.toValue,
-            duration: this.state.duration,
-            useNativeDriver: true,
-            easing: Easing.inOut(Easing.quad)
-        }).start();
-        
-        this.state.verticalValue.addListener(({value}) => {
-            if (value == this.state.toValue) {
-                Animated.timing(this.state.verticalValue, {
-                    toValue: 0,
-                    duration: this.state.duration,
-                    useNativeDriver: true,
-                    easing: Easing.inOut(Easing.quad)
-                }).start();
-            }
-            else if (value == 0) {
-                Animated.timing(this.state.verticalValue, {
-                    toValue: this.state.toValue,
-                    duration: this.state.duration,
-                    useNativeDriver: true,
-                    easing: Easing.inOut(Easing.quad)
-                }).start();
-            };
-        })
+        if(this.animated == true){
+            Animated.timing(this.state.verticalValue, {
+                toValue: this.state.toValue,
+                duration: this.state.duration,
+                useNativeDriver: true,
+                easing: Easing.inOut(Easing.quad)
+            }).start();
+            
+            this.state.verticalValue.addListener(({value}) => {
+                if (value == this.state.toValue) {
+                    Animated.timing(this.state.verticalValue, {
+                        toValue: 0,
+                        duration: this.state.duration,
+                        useNativeDriver: true,
+                        easing: Easing.inOut(Easing.quad)
+                    }).start();
+                }
+                else if (value == 0) {
+                    Animated.timing(this.state.verticalValue, {
+                        toValue: this.state.toValue,
+                        duration: this.state.duration,
+                        useNativeDriver: true,
+                        easing: Easing.inOut(Easing.quad)
+                    }).start();
+                };
+            })
+        }
     }
 
 

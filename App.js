@@ -26,7 +26,7 @@ export default function App() {
       <Stack.Navigator
         screenOptions = {{
           headerStyle: {
-            backgroundColor: "#44aa44"
+            backgroundColor: "#474889"
           },
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -34,7 +34,7 @@ export default function App() {
         initialRouteName = {"setup"}
       >
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
-        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "EarthPal", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
