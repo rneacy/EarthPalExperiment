@@ -11,7 +11,9 @@ const bestScore = 50;
 let valenceIndex = 0;
 
 const tree = require("../assets/newPal/embellishments/tree.png")
+const tree2 = require("../assets/newPal/embellishments/tree-2.png")
 const cloud = require("../assets/newPal/embellishments/cloud.png")
+const cloud2 = require("../assets/newPal/embellishments/cloud-2.png")
 const rocksFront = require("../assets/newPal/embellishments/rocks-front.png")
 const rocksBack = require("../assets/newPal/embellishments/rocks-back.png")
 const star = require("../assets/newPal/embellishments/star.png")
@@ -66,8 +68,10 @@ class Pal extends Component{
             detail: this.props.detail,
 
             renderTrees: false,
+            renderTrees2: false,
             renderTrash: false,
             renderClouds: false,
+            renderClouds2: false,
             renderGlow: false,
             renderStars: false,
             renderFlies: false,
@@ -87,6 +91,8 @@ class Pal extends Component{
             }
             if(this.state.valenceIndex == 1 || this.state.valenceIndex == 4){
                 //neutral embellishments
+                this.state.renderTrees2 = true
+                this.state.renderClouds2 = true
                 if(this.state.detail == "high"){
                     this.state.renderGlow = true
                 }
@@ -190,7 +196,7 @@ class Pal extends Component{
                         
                         {/* Trees */}
                         <Feature
-                            // Tree 1 (middle)
+                            // Tree 1 (middle) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
                             translateY = {-650}
@@ -198,7 +204,7 @@ class Pal extends Component{
                             render = {this.state.renderTrees}
                         />
                         <Feature
-                            // Tree 2 (left)
+                            // Tree 2 (left) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
                             translateY = {-500} translateX = {-60} scale = {0.8}
@@ -206,12 +212,20 @@ class Pal extends Component{
                             render = {this.state.renderTrees}
                         />
                         <Feature
-                            // Tree 3 (right)
+                            // Tree 3 (right) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
                             translateY = {-430} translateX = {60} scale = {0.7}
                             style={styles.view}
                             render = {this.state.renderTrees}
+                        />
+                        <Feature
+                            // Tree (middle) - neutral
+                            source ={tree2}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-620}
+                            style={styles.view}
+                            render = {this.state.renderTrees2}
                         />
 
                         {/* Stars */}
@@ -259,15 +273,25 @@ class Pal extends Component{
                             render = {this.state.renderTrash}
                         />
 
-                        {/* Cloud 2 */}
+                        {/* Clouds (front) */}
                         <Feature
-                            // Cloud 2 (front layer)
+                            // Cloud 2 - sad
                             source ={cloud}
                             interactivity = {this.state.interactivity}
                             translateX = {-70} translateY = {80}
                             flip = {true}
                             style={styles.feature}
                             render = {this.state.renderClouds}
+                        />
+
+                        <Feature
+                            // Cloud - neutral
+                            source ={cloud2}
+                            interactivity = {this.state.interactivity}
+                            translateX = {-30} translateY = {90}
+                            flip = {true}
+                            style={styles.feature}
+                            render = {this.state.renderClouds2}
                         />
 
                         <Feature
