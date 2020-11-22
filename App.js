@@ -5,9 +5,10 @@ import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
-import SetupScreen from "./screens/SetupScreen"
-import MainPalScreen from "./screens/MainPalScreen"
+import SetupScreen from "./screens/SetupScreen";
+import MainPalScreen from "./screens/MainPalScreen";
 import NarrativeScreen from './screens/NarrativeScreen';
+import SurveyScreen from './screens/SurveyScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,11 +32,12 @@ export default function App() {
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
-        initialRouteName = {"setup"}
+        initialRouteName = {"survey"}
       >
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
+		<Stack.Screen name="survey" component = {SurveyScreen} options = {{title: "Survey", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
