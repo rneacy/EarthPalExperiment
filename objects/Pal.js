@@ -223,7 +223,7 @@ class Pal extends Component{
                             // Tree (middle) - neutral
                             source ={tree2}
                             interactivity = {this.state.interactivity}
-                            translateY = {-620}
+                            translateY = {-485} scale = {0.8}
                             style={styles.view}
                             render = {this.state.renderTrees2}
                         />
