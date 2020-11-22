@@ -35,7 +35,7 @@ export default function App() {
           headerTintColor: "#fff",
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
-        initialRouteName = {"survey"}
+        initialRouteName = {"setup"}
       >
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "Here's how Pal feels", headerTitleAlign: "center"}}></Stack.Screen>
