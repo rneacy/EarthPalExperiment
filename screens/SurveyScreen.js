@@ -2,7 +2,7 @@ import React from 'react';
 import RadioForm from 'react-native-simple-radio-button';
 import { StyleSheet, ScrollView, Text, Dimensions, Image, View} from 'react-native';
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
-
+import { email } from "../util/Funcs"
 
 /* Likert scale - parsed parameters are prop.top & prop.bottom
    for the text shown at the top and bottom of the scale. */
@@ -29,56 +29,176 @@ const LikertScale = (props) => {
 				labelColor = '#d0d0d0'
 				buttonColor = '#566A93'
 				selectedButtonColor = '#566A93'
-				onPress={(value) => {console.log(value)}}
+				onPress={(value) => { props.callback(value) }}
 			/>
 			<Text style = {textStyleBot}> {props.bottom} </Text>
 		</View>
 	);
 }
 
-const SurveyScreen = ({navigation}) => {
+let likertScores = {
+	"valence": 0,
+	"arousal": 0,
+	"anxiety": 0,
+	"pride": 0,
+	"stress": 0,
+	"hope": 0,
+	"guilt": 0,
+	"compassion": 0
+}
+
+const SurveyScreen = ({navigation, route}) => {
 	return (
 	<ScrollView style = {{backgroundColor: '#fff',}}>
 		<Text style = {styles.title}> Section 1 - Valence & Arousal </Text>
+
 		<Text style = {styles.text}> Please use the valence self-assessment manikin
 						    below to guide your answer. </Text>
 		<Image source={require('../assets/survey/SAM-Valence.png')} style={styles.image}/>
-		<LikertScale top="Sad" bottom="Happy" number={9} alignment={styles.radio_horizontal} />
+		<LikertScale 
+			top="Sad"
+			bottom="Happy"
+			number={9}
+			alignment={styles.radio_horizontal}
+			callback = { (value) => {
+				likertScores["valence"] = value;
+			}}
+		/>
+
 		<Text style = {{textAlign: 'center'}}> Please use the arousal self-assessment manikin
 											   below to guide your answer. </Text>
 		<Image source={require('../assets/survey/SAM-Arousal.png')} style={styles.image}/>
-		<LikertScale top="Low" bottom="High" number={9} alignment={styles.radio_horizontal} />
+		<LikertScale 
+			top="Low"
+			bottom="High" 
+			number={9} 
+			alignment={styles.radio_horizontal} 
+			callback={ (value) => {
+				likertScores["arousal"] = value;
+			}}
+		/>
+
 		<Text style = {styles.title}> Section 2 - Semantic Categories </Text>
 		<Text style = {styles.text}> Please use the 5-point scale below to rate your feelings of the respective emotion </Text>
+		
 		<Text style = {styles.sub_title}> Anxiety </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical} 
+			callback={ (value) => {
+				likertScores["anxiety"] = value;
+			}}
+		/>
+
 		<Text style = {styles.sub_title}> Pride </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical}
+			callback={ (value) => {
+				likertScores["pride"] = value;
+			}} 
+		/>
+
 		<Text style = {styles.sub_title}> Stress </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical} 
+			callback={ (value) => {
+				likertScores["stress"] = value;
+			}}
+		/>
+
 		<Text style = {styles.sub_title}> Hope </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical} 
+			callback={ (value) => {
+				likertScores["hope"] = value;
+			}}
+		/>
+
 		<Text style = {styles.sub_title}> Guilt </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical} 
+			callback={ (value) => {
+				likertScores["guilt"] = value;
+			}}
+		/>
+
 		<Text style = {styles.sub_title}> Compassion </Text>
-		<LikertScale top="Low" bottom="High" number={5} alignment={styles.radio_vertical} />
+		<LikertScale 
+			top="Low" 
+			bottom="High" 
+			number={5} 
+			alignment={styles.radio_vertical} 
+			callback={ (value) => {
+				likertScores["compassion"] = value;
+			}}
+		/>
+
 		<Text style = {styles.text}> Once you are happy with your answers, select the button below to submit </Text>
 		<Text></Text>
 		<AwesomeButtonC137
 			stretch
 			style = {styles.button}
 			onPress = { () => {
-						submit()
-					}}
+				let updatedSurveyData = route.params.surveyData;
+				let newSurveyEntry = {
+					narrative: route.params.order[0],
+					sams: {
+						valence: likertScores["valence"],
+						arousal: likertScores["arousal"],
+					},
+					sds: {
+						anxiety: likertScores["anxiety"],
+						pride: likertScores["pride"],
+						stress: likertScores["stress"],
+						hope: likertScores["hope"],
+						guilt: likertScores["guilt"],
+						compassion: likertScores["compassion"]
+					}
+				}
+				updatedSurveyData.push(newSurveyEntry);
+
+				console.log(updatedSurveyData);
+
+				let newOrder = route.params.order;
+				newOrder.shift() 
+				if(newOrder.length >= 1){
+					navigation.reset({
+						index: 0,
+						routes: [
+							{ name: "narrative", params: { order: newOrder, surveyData: updatedSurveyData }}
+						]
+					});
+				}
+				else {
+					email(updatedSurveyData);
+					navigation.reset({
+						index: 0,
+						routes: [
+							{ name: "thanks" }
+						]
+					})
+				}
+			}
+			}
 		>
 			Submit Survey
 		</AwesomeButtonC137>
 	</ScrollView>
 	);
-}
-
-function submit() {
-	console.log("Submiting Survey")
 }
 
 const styles = StyleSheet.create({

@@ -82,7 +82,7 @@ const ChartDisplayScreen = ({navigation, route}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.data }}
+                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.data, surveyData: route.params.surveyData }}
                         ]
                     })
                 }}

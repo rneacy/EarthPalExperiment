@@ -41,27 +41,12 @@ const MainPalScreen =  ({navigation, route}) => {
                 stretch
                 disabled={buttonDisabled}
                 onPress = { () => {
-                    //! REMOVE THIS WHEN SURVEY SCREEN AVAILABLE/PERMUTATIONS IMPLEMENTED!!!
-                    let newOrder = route.params.order;
-                    newOrder.shift() 
-                    if(newOrder[0] === 0) newOrder.shift() //bypass personal data for now
-                    if(newOrder.length >= 1){
-                        //navigation.navigate("narrative", { order: newOrder })
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "narrative", params: { order: newOrder }}
-                            ]
-                        })
-                    }
-                    else {
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "thanks" }
-                            ]
-                        })
-                    }
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: "survey", params: { order: route.params.order, surveyData: route.params.surveyData }}
+                        ]
+                    })
                 }}
                 style = {{position: "absolute", top: Dimensions.get("window").height - 150}}
             >
