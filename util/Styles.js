@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       textAlign: "center",
-      padding: 30,
+      //padding: 300,
       backgroundColor: "#566A93"
     },
     titleText: {
@@ -33,5 +33,12 @@ export const styles = StyleSheet.create({
       height: Dimensions.get('window').width,
       position: 'absolute',
       //resizeMode: 'center'
+    },
+    view: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height * 2,
+      position: 'absolute',
+      resizeMode: 'center',
+      paddingTop: 220
     },
   });

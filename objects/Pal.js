@@ -11,6 +11,11 @@ const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};
 const bestScore = 50;
 let valenceIndex = 0;
 
+const tree = require("../assets/newPal/embellishments/tree.png")
+const cloud = require("../assets/newPal/embellishments/cloud.png")
+const rocksFront = require("../assets/newPal/embellishments/rocks-front.png")
+const rocksBack = require("../assets/newPal/embellishments/rocks-back.png")
+
 const BaseImages = {
     5: {
         "globe": require("../assets/newPal/globe/globe-sad.png"),
@@ -50,11 +55,37 @@ class Pal extends Component{
 
         this.state = {
             valenceIndex: Math.floor(((10 * (this.props.palScore / bestScore)) / 3) - 1),
-            interactivity: "inter"
+            interactivity: "inter",
+            detail: "medium",
+            // interactivity: this.props.interactivity,
+            // detail: this.props.detail,
+
+            renderTrees: false,
+            renderTrash: false,
+            renderClouds: false
         };
         if(this.state.valenceIndex < 0){
             this.state.valenceIndex = 0
         }
+
+        if(this.state.detail == "medium"){
+            if(this.state.valenceIndex == 0 || this.state.valenceIndex == 3){
+                //happy embellishments
+                this.state.renderTrees = true
+            }
+            if(this.state.valenceIndex == 1 || this.state.valenceIndex == 4){
+                //neutral embellishments
+            }
+            if(this.state.valenceIndex == 2 || this.state.valenceIndex == 5){
+                //sad embellishments
+                this.state.renderTrash = true
+                this.state.renderClouds = true
+            }
+            if(this.state.detail == "high"){
+            
+            }
+        }
+
     }
 
     pressIn = () => {
@@ -73,7 +104,7 @@ class Pal extends Component{
 
     render() {
         return (
-            <Idle interactivity = {this.state.interactivity} style = {styles.feature}>
+            <Idle interactivity = {this.state.interactivity} style = {styles.view}>
                 <TouchableWithoutFeedback
                     style={{
                         width: Dimensions.get('window').width,
@@ -83,7 +114,38 @@ class Pal extends Component{
                     onPressIn = {() => this.pressIn()}
                     onPressOut = {() => this.pressOut()}
                 >
-                    <Poke interactivity = {this.state.interactivity}>
+                    <Poke interactivity = {this.state.interactivity} style = {styles.view}>
+
+                        {/* Clouds */}
+                        <Feature
+                            // Cloud 1 (back layer)
+                            source ={cloud}
+                            interactivity = {this.state.interactivity}
+                            translateX = {50} translateY = {-210} scale = {1.3}
+                            flip = {true}
+                            style={styles.feature}
+                            render = {this.state.renderClouds}
+                        />
+
+                        <Feature
+                            // Cloud 2 (back layer)
+                            source ={cloud}
+                            interactivity = {this.state.interactivity}
+                            translateX = {100} translateY = {170} scale = {0.9}
+                            style={styles.feature}
+                            render = {this.state.renderClouds}
+                        />
+
+                        <Feature
+                            // Trash (back layer)
+                            source ={rocksBack}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-12}
+                            style={styles.feature}
+                            render = {this.state.renderTrash}
+                        />
+
+                        {/* ----- Face Features ----- */}
                         <Feature
                             interactivity = {this.state.interactivity}
                             source={BaseImages[this.state.valenceIndex]["globe"]}
@@ -99,16 +161,53 @@ class Pal extends Component{
                             source={BaseImages[this.state.valenceIndex]["mouth"]}
                             style={styles.feature}
                         />
-                        {/* <Tear
+                        
+                        {/* ------------------------- */}
+                        
+                        {/* Trees */}
+                        <Feature
+                            // Tree 1 (middle)
+                            source ={tree}
                             interactivity = {this.state.interactivity}
-                            style={styles.feature}
-                            xValue = {100}
+                            translateY = {-650}
+                            style={styles.view}
+                            render = {this.state.renderTrees}
                         />
-                        <Tear
+                        <Feature
+                            // Tree 2 (left)
+                            source ={tree}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-500} translateX = {-60} scale = {0.8}
+                            style={styles.view}
+                            render = {this.state.renderTrees}
+                        />
+                        <Feature
+                            // Tree 3 (right)
+                            source ={tree}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-430} translateX = {60} scale = {0.7}
+                            style={styles.view}
+                            render = {this.state.renderTrees}
+                        />
+
+                        <Feature
+                            // Trash (front layer)
+                            source ={rocksFront}
                             interactivity = {this.state.interactivity}
                             style={styles.feature}
-                            xValue = {-30}
-                        /> */}
+                            render = {this.state.renderTrash}
+                        />
+
+                        {/* Cloud 2 */}
+                        <Feature
+                            // Cloud 2 (front layer)
+                            source ={cloud}
+                            interactivity = {this.state.interactivity}
+                            translateX = {-70} translateY = {80}
+                            flip = {true}
+                            style={styles.feature}
+                            render = {this.state.renderClouds}
+                        />
                     </Poke>
                 </TouchableWithoutFeedback>
             </Idle>
