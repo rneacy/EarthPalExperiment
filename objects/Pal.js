@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, Dimensions } from 'react-native'
+import { Text, Image, Dimensions, View } from 'react-native'
 import { styles } from '../util/Styles'
 
 const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};
@@ -24,8 +24,15 @@ const BaseImages = {
 }
 
 const Pal = (props) => {
+    console.log(props.palScore)
     let valenceIndex = Math.floor(((10 * (props.palScore / bestScore)) / 3) - 1)
     if (valenceIndex < 0 || valenceIndex === NaN) valenceIndex = 0
+
+    let interactivity = "basic"
+
+    if (props.interactivity !== "undefined"){
+        interactivity = props.interactivity;
+    }
 
     return (
         <>

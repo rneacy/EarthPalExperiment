@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
       justifyContent: "center",
       textAlign: "center",
       padding: 30,
-      backgroundColor: "#474889"
+      backgroundColor: "#566A93"
     },
     titleText: {
       fontSize: 30,

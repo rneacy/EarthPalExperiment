@@ -1,0 +1,1 @@
+export const screenDelay = 2000;
