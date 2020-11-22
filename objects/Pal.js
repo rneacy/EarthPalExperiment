@@ -62,10 +62,8 @@ class Pal extends Component{
 
         this.state = {
             valenceIndex: Math.floor(((10 * (this.props.palScore / bestScore)) / 3) - 1),
-            interactivity: "inter",
-            detail: "high",
-            // interactivity: this.props.interactivity,
-            // detail: this.props.detail,
+            interactivity: this.props.interactivity,
+            detail: this.props.detail,
 
             renderTrees: false,
             renderTrash: false,
