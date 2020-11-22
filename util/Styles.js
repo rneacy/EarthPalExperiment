@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').width,
       position: 'absolute',
+      justifyContent: 'center'
       //resizeMode: 'center'
     },
     view: {

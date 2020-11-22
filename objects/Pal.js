@@ -5,6 +5,7 @@ import Feature from '../objects/Feature'
 import Idle from '../objects/Idle'
 import Poke from '../objects/Poke'
 import Tear from '../objects/Tear'
+import Rotate from '../objects/Rotate'
 import {TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};
@@ -15,6 +16,8 @@ const tree = require("../assets/newPal/embellishments/tree.png")
 const cloud = require("../assets/newPal/embellishments/cloud.png")
 const rocksFront = require("../assets/newPal/embellishments/rocks-front.png")
 const rocksBack = require("../assets/newPal/embellishments/rocks-back.png")
+const star = require("../assets/newPal/embellishments/star.png")
+const flies = require("../assets/newPal/embellishments/flies.png")
 
 const BaseImages = {
     5: {
@@ -70,6 +73,8 @@ class Pal extends Component{
             renderTrash: false,
             renderClouds: false,
             renderGlow: false,
+            renderStars: false,
+            renderFlies: false,
         };
         if(this.state.valenceIndex < 0){
             this.state.valenceIndex = 0
@@ -78,27 +83,25 @@ class Pal extends Component{
         if(this.state.detail == "medium" || this.state.detail == "high"){
             if(this.state.valenceIndex == 0 || this.state.valenceIndex == 3){
                 //happy embellishments
-                console.log("happy?")
                 this.state.renderTrees = true
                 if(this.state.detail == "high"){
                     this.state.renderGlow = true
+                    this.state.renderStars = true
                 }
             }
             if(this.state.valenceIndex == 1 || this.state.valenceIndex == 4){
                 //neutral embellishments
-                console.log("meh?")
                 if(this.state.detail == "high"){
-                    console.log("hmmm?")
                     this.state.renderGlow = true
                 }
             }
             if(this.state.valenceIndex == 2 || this.state.valenceIndex == 5){
                 //sad embellishments
-                console.log("sad?")
                 this.state.renderTrash = true
                 this.state.renderClouds = true
                 if(this.state.detail == "high"){
                     this.state.renderGlow = true
+                    this.state.renderFlies = true
                 }
             }
         }
@@ -137,7 +140,6 @@ class Pal extends Component{
                             source ={BaseImages[this.state.valenceIndex]["glow"]}
                             interactivity = {this.state.interactivity}
                             translateY = {-70} scale = {1.4}
-                            //flip = {true}
                             style={styles.feature}
                             render = {this.state.renderGlow}
                         />
@@ -216,6 +218,43 @@ class Pal extends Component{
                             render = {this.state.renderTrees}
                         />
 
+                        {/* Stars */}
+                        <Feature
+                            //top left
+                            source = {star}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-340} translateX = {-130} scale = {0.6}
+                            style={styles.view}
+                            render = {this.state.renderStars}
+                        />
+                        <Feature
+                            //top right
+                            source = {star}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-230} translateX = {120} scale = {0.4}
+                            style={styles.view}
+                            render = {this.state.renderStars}
+                        />
+
+                        <Feature
+                            //bottom left
+                            source = {star}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-330} translateX = {-130} scale = {0.9}
+                            style={styles.view}
+                            render = {this.state.renderStars}
+                        />
+
+                        <Feature
+                            //bottom right
+                            source = {star}
+                            interactivity = {this.state.interactivity}
+                            translateY = {-480} translateX = {90} scale = {1.2}
+                            style={styles.view}
+                            render = {this.state.renderStars}
+                        />
+
+                        {/* Trash */}
                         <Feature
                             // Trash (front layer)
                             source ={rocksFront}
@@ -233,6 +272,15 @@ class Pal extends Component{
                             flip = {true}
                             style={styles.feature}
                             render = {this.state.renderClouds}
+                        />
+
+                        <Feature
+                            //Flies
+                            source = {flies}
+                            interactivity = {this.state.interactivity}
+                            style={styles.feature}
+                            translateY = {-80}
+                            render = {this.state.renderFlies}
                         />
                     </Poke>
                 </TouchableWithoutFeedback>
