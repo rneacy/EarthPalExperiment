@@ -179,7 +179,7 @@ const SurveyScreen = ({navigation, route}) => {
 					navigation.reset({
 						index: 0,
 						routes: [
-							{ name: "narrative", params: { order: newOrder, surveyData: updatedSurveyData }}
+							{ name: "narrative", params: { order: newOrder, parsedPal: route.params.parsedPal, surveyData: updatedSurveyData }}
 						]
 					});
 				}

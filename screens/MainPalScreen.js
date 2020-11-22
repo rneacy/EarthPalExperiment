@@ -35,7 +35,7 @@ const MainPalScreen =  ({navigation, route}) => {
             {/* <Text style={[styles.normalText, {fontSize: 25}]}>Your pal score:</Text>
             <Text style={styles.normalText}>{route.params.parsedPal}</Text>
             <Text style={[styles.normalText, {fontSize: 25, paddingTop:20}]}>Your pal is: </Text> */}
-            <Pal palScore={route.params.parsedPal} />
+            <Pal palScore={route.params.data} />
 
             <AwesomeButtonC137
                 stretch
@@ -44,7 +44,7 @@ const MainPalScreen =  ({navigation, route}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "survey", params: { order: route.params.order, surveyData: route.params.surveyData }}
+                            { name: "survey", params: { order: route.params.order, surveyData: route.params.surveyData, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data }}
                         ]
                     })
                 }}

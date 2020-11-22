@@ -44,7 +44,7 @@ const NarrativeScreen = ({navigation, route}) => {
                         index: 0,
                         routes: [
                             { name: "charts", 
-                            params: { order: route.params.order, data: route.params.order[0] === 0 ? route.params.parsedPal : narrative_data[parseInt(route.params.order[0])], surveyData: route.params.surveyData }
+                            params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : narrative_data[parseInt(route.params.order[0])], surveyData: route.params.surveyData }
                             }
                         ]
                     })
