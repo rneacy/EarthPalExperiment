@@ -10,12 +10,18 @@ let setOtherPalString = (text) => { otherPalString = text; }
 let otherParsedPal = 0;
 let setOtherParsedPal = (val) => { otherParsedPal = val; }
 
+let userName = ""
+let setUserName = (text) => { userName = text; }
+
 const SetupScreen = ({navigation}) => {
     const [palString, setPalString] = React.useState('');
     const [parsedPal, setParsedPal] = React.useState(0);
 
     return (
         <View style = {[styles.home, {paddingBottom: 20}]}>
+            <Text style={{textAlign: "center", padding: 5, marginTop: 20}}>Please tell us your name</Text>
+            <FormEntry label="Name" callback={setUserName}/>
+
             <Text style={{textAlign: "center", padding: 5, marginTop: 20}}>Paste in the Pal Code we gave you below to start</Text>
             <FormEntry label="Pal Code" callback={setOtherPalString}/>
             <AwesomeButtonC137
@@ -26,7 +32,7 @@ const SetupScreen = ({navigation}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal, surveyData: [] }}
+                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal, surveyData: {name: userName, palcode: otherParsedPal, questionnaire: otherPalString, data:[]} }}
                         ]
                     });
                 }}

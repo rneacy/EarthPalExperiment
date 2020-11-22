@@ -169,9 +169,9 @@ const SurveyScreen = ({navigation, route}) => {
 						compassion: likertScores["compassion"]
 					}
 				}
-				updatedSurveyData.push(newSurveyEntry);
+				updatedSurveyData["data"].push(newSurveyEntry);
 
-				console.log(updatedSurveyData);
+				//console.log(updatedSurveyData);
 
 				let newOrder = route.params.order;
 				newOrder.shift() 
