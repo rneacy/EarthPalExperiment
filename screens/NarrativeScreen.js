@@ -5,6 +5,7 @@ import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c13
 import { screenDelay } from '../util/etc'
 
 const narratives = {
+    0: require("../assets/narratives/0.json").text,
     1: require("../assets/narratives/1.json").text,
     2: require("../assets/narratives/2.json").text,
     3: require("../assets/narratives/3.json").text
@@ -42,7 +43,9 @@ const NarrativeScreen = ({navigation, route}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "charts", params: { order: route.params.order, data: narrative_data[parseInt(route.params.order[0])] }}
+                            { name: "charts", 
+                            params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : narrative_data[parseInt(route.params.order[0])], surveyData: route.params.surveyData }
+                            }
                         ]
                     })
                 }}

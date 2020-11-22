@@ -8,6 +8,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import SetupScreen from "./screens/SetupScreen";
 import MainPalScreen from "./screens/MainPalScreen";
 import NarrativeScreen from './screens/NarrativeScreen';
+import SurveyScreen from './screens/SurveyScreen';
 import ChartDisplayScreen from './screens/ChartDisplayScreen';
 import ThanksScreen from './screens/ThanksScreen';
 
@@ -39,7 +40,8 @@ export default function App() {
         <Stack.Screen name="setup" component = {SetupScreen} options = {{title: "EarthPal Setup", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="mainpal" component = {MainPalScreen} options = {{title: "EarthPal", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="narrative" component = {NarrativeScreen} options = {{title: "Environmental Case Study", headerTitleAlign: "center"}}></Stack.Screen>
-        <Stack.Screen name="charts" component = {ChartDisplayScreen} options = {{title: "Chart", headerTitleAlign: "center"}}></Stack.Screen>
+		    <Stack.Screen name="survey" component = {SurveyScreen} options = {{title: "Survey", headerTitleAlign: "center"}}></Stack.Screen>
+        <Stack.Screen name="charts" component = {ChartDisplayScreen} options = {{title: "Chart of Eco-Impact Score", headerTitleAlign: "center"}}></Stack.Screen>
         <Stack.Screen name="thanks" component = {ThanksScreen} options = {{title: "Thank You!", headerTitleAlign: "center"}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

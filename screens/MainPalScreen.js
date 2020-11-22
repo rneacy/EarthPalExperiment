@@ -35,6 +35,7 @@ const MainPalScreen =  ({navigation, route}) => {
             {/* <Text style={[styles.normalText, {fontSize: 25}]}>Your pal score:</Text>
             <Text style={styles.normalText}>{route.params.parsedPal}</Text>
             <Text style={[styles.normalText, {fontSize: 25, paddingTop:20}]}>Your pal is: </Text> */}
+      
             <Pal 
                 palScore={route.params.parsedPal} 
                 detail={"high"} //this can be "basic", "medium" or "high"
@@ -45,27 +46,12 @@ const MainPalScreen =  ({navigation, route}) => {
                 stretch
                 disabled={buttonDisabled}
                 onPress = { () => {
-                    //! REMOVE THIS WHEN SURVEY SCREEN AVAILABLE/PERMUTATIONS IMPLEMENTED!!!
-                    let newOrder = route.params.order;
-                    newOrder.shift() 
-                    if(newOrder[0] === 0) newOrder.shift() //bypass personal data for now
-                    if(newOrder.length >= 1){
-                        //navigation.navigate("narrative", { order: newOrder })
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "narrative", params: { order: newOrder }}
-                            ]
-                        })
-                    }
-                    else {
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "thanks" }
-                            ]
-                        })
-                    }
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: "survey", params: { order: route.params.order, surveyData: route.params.surveyData, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data }}
+                        ]
+                    })
                 }}
                 style = {{position: "absolute", top: Dimensions.get("window").height - 150}}
             >

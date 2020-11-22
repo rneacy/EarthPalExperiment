@@ -3,8 +3,15 @@ import { View, Text } from 'react-native';
 import { styles } from '../util/Styles'
 import { FormEntry } from '../objects/Form'
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
-import { Email } from '../smtp'
-import { shuffle } from '../util/Funcs'
+import { shuffle, email } from '../util/Funcs'
+
+let otherPalString = "";
+let setOtherPalString = (text) => { otherPalString = text; }
+let otherParsedPal = 0;
+let setOtherParsedPal = (val) => { otherParsedPal = val; }
+
+let userName = ""
+let setUserName = (text) => { userName = text; }
 
 const SetupScreen = ({navigation}) => {
     const [palString, setPalString] = React.useState('');
@@ -12,94 +19,25 @@ const SetupScreen = ({navigation}) => {
 
     return (
         <View style = {[styles.home, {paddingBottom: 20}]}>
-            <Text style={{textAlign: "center", padding: 5}}>Paste in the Pal Code we gave you below to start</Text>
-            <FormEntry label="Pal Code" callback={setPalString}/>
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    setParsedPal(evaluate(palString));
-                    navigation.navigate("mainpal", { parsedPal: parsedPal })
-                }}
-            >
-                Generate Pal
-            </AwesomeButtonC137>
+            <Text style={{textAlign: "center", padding: 5, marginTop: 20}}>Please tell us your name</Text>
+            <FormEntry label="Name" callback={setUserName}/>
 
-            <Text style={[styles.normalText, {paddingVertical:20, color:"black"}]}>
-                Test functions:
-            </Text>
+            <Text style={{textAlign: "center", padding: 5, marginTop: 20}}>Paste in the Pal Code we gave you below to start</Text>
+            <FormEntry label="Pal Code" callback={setOtherPalString}/>
             <AwesomeButtonC137
                 stretch
                 onPress = { () => {
-                    let order = shuffle([0,1,2,3]); // generates order of display
-                    if (order[0] === 0) {
-                        // Show personal data
-                        order.shift(); //! REMOVE (DON'T REMOVE IF YOU'RE NOT ROSS)
-                        //navigation.navigate("narrative", { order: order })
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "narrative", params: { order: order }}
-                            ]
-                        })
-                    }
-                    else {
-                        //navigation.navigate("narrative", { order: order })
-                        navigation.reset({
-                            index: 0,
-                            routes: [
-                                { name: "narrative", params: { order: order }}
-                            ]
-                        })
-                    }
+                    let order = shuffle([0,1,2,3])
+                    setOtherParsedPal(evaluate(otherPalString));
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal, surveyData: {name: userName, palcode: otherParsedPal, questionnaire: otherPalString, data:[]} }}
+                        ]
+                    });
                 }}
             >
-                Test Example Study
-            </AwesomeButtonC137>
-
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    navigation.navigate("charts");
-                }}
-            >
-                Chart Screen
-            </AwesomeButtonC137>
-
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    navigation.navigate("narrative", { narrative: Math.floor(Math.random() * 3 + 1)});
-                }}
-            >
-                Random Narrative
-            </AwesomeButtonC137>
-
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    navigation.navigate("thanks");
-                }}
-            >
-                Thanks Screen
-            </AwesomeButtonC137>
-
-            <AwesomeButtonC137
-                stretch
-                onPress = { () => {
-                    Email.send({
-                        Host: "smtp.gmail.com",
-                        Username: "earthpalinc@gmail.com",
-                        Password: "PfKW499rfJkRTYa",
-                        To: "earthpalinc@gmail.com",
-                        From: "earthpalinc@gmail.com",
-                        Subject: "EarthPal Study Results",
-                        Body: "Hello!"
-                    }).then (
-                        message => console.log(message)
-                    );
-                }}
-            >
-                Test Email
+                Start Study
             </AwesomeButtonC137>
         </View>
     );
