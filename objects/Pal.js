@@ -4,8 +4,6 @@ import { styles } from '../util/Styles'
 import Feature from '../objects/Feature'
 import Idle from '../objects/Idle'
 import Poke from '../objects/Poke'
-import Tear from '../objects/Tear'
-import Rotate from '../objects/Rotate'
 import {TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};
