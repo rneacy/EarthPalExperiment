@@ -49,7 +49,7 @@ const MainPalScreen =  ({navigation, route}) => {
 
     return (
         <View style={styles.main}>      
-            <PalF 
+            <Pal 
                 palScore={route.params.data} 
                 detail={combos[innerOrder[0]][0]} //this can be "basic", "medium" or "high"
                 interactivity={combos[innerOrder[0]][1]} //this can be "static", "anim" or "inter"
