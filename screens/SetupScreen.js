@@ -32,7 +32,7 @@ const SetupScreen = ({navigation}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal, surveyData: {name: userName, palcode: otherParsedPal, questionnaire: otherPalString, data:[]} }}
+                            { name: "narrative", params: { order: order, parsedPal: otherParsedPal, surveyData: {name: userName, palcode: otherParsedPal, questionnaire: otherPalString, narratives:{}} }}
                         ]
                     });
                 }}

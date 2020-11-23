@@ -40,11 +40,14 @@ const NarrativeScreen = ({navigation, route}) => {
                 style={{marginTop:30}}
                 onPress = { () => {
                     //navigation.navigate("charts", { order: route.params.order, data: narrative_data[parseInt(route.params.order[0])]})
+                    let updatedSurveyData = route.params.surveyData;
+                    updatedSurveyData.narratives[route.params.order[0]] = [];
+                    
                     navigation.reset({
                         index: 0,
                         routes: [
                             { name: "charts", 
-                            params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : narrative_data[parseInt(route.params.order[0])], surveyData: route.params.surveyData }
+                            params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : narrative_data[parseInt(route.params.order[0])], surveyData: updatedSurveyData }
                             }
                         ]
                     })

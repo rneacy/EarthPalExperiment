@@ -63,7 +63,7 @@ const MainPalScreen =  ({navigation, route}) => {
                 stretch
                 disabled={buttonDisabled}
                 onPress = { () => {
-                    let combo = route.params.innerOrder[0];
+                    let combo = combos[route.params.innerOrder[0]];
                     let newInnerOrder = route.params.innerOrder;
                     newInnerOrder.shift();
                     navigation.reset({

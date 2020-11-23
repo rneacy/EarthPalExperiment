@@ -1,1 +1,1 @@
-export const screenDelay = 2000;
+export const screenDelay = 0;

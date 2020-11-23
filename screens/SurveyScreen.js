@@ -155,7 +155,6 @@ const SurveyScreen = ({navigation, route}) => {
 			onPress = { () => {
 				let updatedSurveyData = route.params.surveyData;
 				let newSurveyEntry = {
-					narrative: route.params.order[0],
 					combo: route.params.combo,
 					sams: {
 						valence: likertScores["valence"],
@@ -170,22 +169,24 @@ const SurveyScreen = ({navigation, route}) => {
 						compassion: likertScores["compassion"]
 					}
 				}
-				updatedSurveyData["data"].push(newSurveyEntry);
+				updatedSurveyData.narratives[route.params.order[0]].push(newSurveyEntry);
 
 				//console.log(updatedSurveyData);
 
 				let newOrder = route.params.order;
-				if(newOrder.length >= 1){
-					if(route.params.innerOrder.length >= 1) {
-						navigation.reset({
-							index: 0,
-							routes: [
-								{ name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: updatedSurveyData, innerOrder: route.params.innerOrder}}
-							]
-						})
-					}
-					else{
-						newOrder.shift() 
+
+				if(route.params.innerOrder.length >= 1) {
+					navigation.reset({
+						index: 0,
+						routes: [
+							{ name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: updatedSurveyData, innerOrder: route.params.innerOrder}}
+						]
+					})
+				}
+				else{
+					newOrder.shift();
+
+					if(newOrder.length >= 1){
 						navigation.reset({
 							index: 0,
 							routes: [
@@ -193,15 +194,15 @@ const SurveyScreen = ({navigation, route}) => {
 							]
 						});
 					}
-				}
-				else {
-					email(updatedSurveyData);
-					navigation.reset({
-						index: 0,
-						routes: [
-							{ name: "thanks" }
-						]
-					})
+					else {
+						email(updatedSurveyData);
+						navigation.reset({
+							index: 0,
+							routes: [
+								{ name: "thanks" }
+							]
+						})
+					}
 				}
 			}
 			}

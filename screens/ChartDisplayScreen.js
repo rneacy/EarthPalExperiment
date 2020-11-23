@@ -80,10 +80,11 @@ const ChartDisplayScreen = ({navigation, route}) => {
                 style={{marginTop:30}}
                 onPress = { () => {
                     //navigation.navigate("mainpal", { order: route.params.order, parsedPal: route.params.data })
+                    
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: route.params.surveyData, innerOrder: shuffle([0,1,2,3,4,5,6,7,8]) }}
+                            { name: "survey", params: { combo: "chart", order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: route.params.surveyData, innerOrder: shuffle([0,1,2,3,4,5,6,7,8]) }}
                         ]
                     })
                 }}
