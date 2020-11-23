@@ -8,7 +8,7 @@ import {TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const valences = {0: "Happy", 1: "Neutral", 2: "Sad"};
 const bestScore = 50;
-let valenceIndex = 0;
+//let valenceIndex = 0;
 
 const tree = require("../assets/newPal/embellishments/tree.png")
 const tree2 = require("../assets/newPal/embellishments/tree-2.png")
@@ -78,17 +78,14 @@ class Pal extends Component{
             renderStars: false,
             renderFlies: false,
         };
-        if(valenceIndex < 0){
-            valenceIndex = 0
+        console.log(this.props.palScore)
+        console.log(Math.floor(((10 * (this.props.palScore / bestScore)) / 3) - 1))
+        if(this.state.valenceIndex < 0){
+            this.state.valenceIndex = 0
         }
 
-        console.log("New pal!")
-        console.log(BaseImages === undefined)
-        console.log(valenceIndex === undefined)
-        console.log(BaseImages[valenceIndex].glow === undefined)
-
         if(this.props.detail == "medium" || this.props.detail == "high"){
-            if(valenceIndex == 0 || valenceIndex == 3){
+            if(this.state.valenceIndex == 0 || this.state.valenceIndex == 3){
                 //happy embellishments
                 this.state.renderTrees = true
                 if(this.props.detail == "high"){
@@ -96,7 +93,7 @@ class Pal extends Component{
                     this.state.renderStars = true
                 }
             }
-            if(valenceIndex == 1 || valenceIndex == 4){
+            if(this.state.valenceIndex == 1 || this.state.valenceIndex == 4){
                 //neutral embellishments
                 this.state.renderTrees2 = true
                 this.state.renderClouds2 = true
@@ -104,7 +101,7 @@ class Pal extends Component{
                     this.state.renderGlow = true
                 }
             }
-            if(valenceIndex == 2 || valenceIndex == 5){
+            if(this.state.valenceIndex == 2 || this.state.valenceIndex == 5){
                 //sad embellishments
                 this.state.renderTrash = true
                 this.props.renderClouds = true
@@ -119,15 +116,15 @@ class Pal extends Component{
 
     pressIn = () => {
         if(this.props.interactivity == "inter"){
-            valenceIndex = valenceIndex + 3
-            //this.setState({valenceIndex:  valenceIndex})
+            //this.state.valenceIndex = this.state.valenceIndex + 3
+            this.setState({valenceIndex:  this.state.valenceIndex + 3})
         }
     }
 
     pressOut = () => {
         if(this.props.interactivity == "inter"){
-            valenceIndex = valenceIndex - 3
-            //this.setState({valenceIndex: valenceIndex})
+            //this.state.valenceIndex = this.state.valenceIndex - 3
+            this.setState({valenceIndex:  this.state.valenceIndex - 3})
         }
     }
 
@@ -146,7 +143,7 @@ class Pal extends Component{
                     <Poke interactivity = {this.props.interactivity} style = {styles.view}>
                         <Feature
                             // Glow
-                            source ={BaseImages[valenceIndex]["glow"]}
+                            source ={BaseImages[this.state.valenceIndex]["glow"]}
                             interactivity = {this.props.interactivity}
                             translateY = {-70} scale = {1.4}
                             style={styles.feature}
@@ -185,17 +182,17 @@ class Pal extends Component{
                         {/* ----- Face Features ----- */}
                         <Feature
                             interactivity = {this.props.interactivity}
-                            source={BaseImages[valenceIndex]["globe"]}
+                            source={BaseImages[this.state.valenceIndex]["globe"]}
                             style={styles.feature}
                         />
                         <Feature
                             interactivity = {this.props.interactivity}
-                            source={BaseImages[valenceIndex]["eyes"]}
+                            source={BaseImages[this.state.valenceIndex]["eyes"]}
                             style={styles.feature}
                         />
                         <Feature
                             interactivity = {this.props.interactivity}
-                            source={BaseImages[valenceIndex]["mouth"]}
+                            source={BaseImages[this.state.valenceIndex]["mouth"]}
                             style={styles.feature}
                         />
                         

@@ -5,6 +5,7 @@ import { VictoryBar, VictoryChart, VictoryTheme, VictoryContainer, VictoryLabel 
 import AwesomeButtonC137 from "react-native-really-awesome-button/src/themes/c137"
 import { useNavigationBuilder } from '@react-navigation/native';
 import { screenDelay } from '../util/etc'
+import { shuffle } from '../util/Funcs'
 
 const data = [
     { name: 1, value: 15 }
@@ -82,7 +83,7 @@ const ChartDisplayScreen = ({navigation, route}) => {
                     navigation.reset({
                         index: 0,
                         routes: [
-                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: route.params.surveyData }}
+                            { name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: route.params.surveyData, innerOrder: shuffle([0,1,2,3,4,5,6,7,8]) }}
                         ]
                     })
                 }}

@@ -8,12 +8,14 @@ import { shuffle } from '../util/Funcs'
 import { screenDelay } from '../util/etc'
 import { useLinkProps } from '@react-navigation/native';
 
-let innerOrder = undefined
+//let innerOrder = undefined
 
 const MainPalScreen =  ({navigation, route}) => {
     // Delay their exit from the screen
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
+    //const [innerOrder, setInnerOrder] = React.useState([])
     React.useEffect( () => {
+        console.log(route.params.data)
         if(buttonDisabled) {
             setTimeout(() => {setButtonDisabled(false)}, screenDelay);
         }
@@ -33,34 +35,37 @@ const MainPalScreen =  ({navigation, route}) => {
         8: ["high", "inter"],
     }
 
-    if (innerOrder === undefined){
-        if(route.params.innerOrder === undefined) {
-            innerOrder = shuffle([0,1,2,3,4,5,6,7,8])
-            console.log("Generated new inner order: ")
-            console.log(innerOrder)
-        }
-        else {
-            innerOrder = route.params.innerOrder
-        }
-    }
-    else {
-        console.log("Current pal: " + combos[innerOrder[0]][0] + " " + combos[innerOrder[0]][1])
-    }
+    // if (innerOrder === undefined){
+    //     if(route.params.innerOrder === undefined) {
+    //         innerOrder = shuffle([0,1,2,3,4,5,6,7,8])
+    //         //console.log("Generated new inner order: ")
+    //         console.log(innerOrder)
+    //     }
+    //     else {
+    //         innerOrder = route.params.innerOrder
+    //         console.log(innerOrder)
+    //     }
+    // }
+    // else {
+    //     console.log("Current pal: " + combos[innerOrder[0]][0] + " " + combos[innerOrder[0]][1])
+    //     console.log(innerOrder)
+    // }
 
     return (
         <View style={styles.main}>      
             <Pal 
                 palScore={route.params.data} 
-                detail={combos[innerOrder[0]][0]} //this can be "basic", "medium" or "high"
-                interactivity={combos[innerOrder[0]][1]} //this can be "static", "anim" or "inter"
+                detail={combos[route.params.innerOrder[0]][0]} //this can be "basic", "medium" or "high"
+                interactivity={combos[route.params.innerOrder[0]][1]} //this can be "static", "anim" or "inter"
             />
 
             <AwesomeButtonC137
                 stretch
                 disabled={buttonDisabled}
                 onPress = { () => {
-                    let combo = innerOrder[0];
-                    innerOrder.shift();
+                    let combo = route.params.innerOrder[0];
+                    let newInnerOrder = route.params.innerOrder;
+                    newInnerOrder.shift();
                     navigation.reset({
                         index: 0,
                         routes: [
@@ -71,7 +76,7 @@ const MainPalScreen =  ({navigation, route}) => {
                                     parsedPal: route.params.parsedPal, 
                                     data: route.params.order[0] === 0 ? 
                                         route.params.parsedPal : route.params.data,
-                                    innerOrder: innerOrder,
+                                    innerOrder: newInnerOrder,
                                     combo: combo
                                 }
                             }

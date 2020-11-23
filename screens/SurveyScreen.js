@@ -175,7 +175,6 @@ const SurveyScreen = ({navigation, route}) => {
 				//console.log(updatedSurveyData);
 
 				let newOrder = route.params.order;
-				newOrder.shift() 
 				if(newOrder.length >= 1){
 					if(route.params.innerOrder.length >= 1) {
 						navigation.reset({
@@ -186,6 +185,7 @@ const SurveyScreen = ({navigation, route}) => {
 						})
 					}
 					else{
+						newOrder.shift() 
 						navigation.reset({
 							index: 0,
 							routes: [
