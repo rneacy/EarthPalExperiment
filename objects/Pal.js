@@ -199,32 +199,32 @@ class Pal extends Component{
                             // Tree 1 (middle) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
-                            translateY = {-650}
-                            style={styles.view}
+                            translateY = {-195}
+                            style={styles.feature}
                             render = {this.state.renderTrees}
                         />
                         <Feature
                             // Tree 2 (left) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
-                            translateY = {-500} translateX = {-60} scale = {0.8}
-                            style={styles.view}
+                            translateY = {-130} translateX = {65} scale = {0.8}
+                            style={styles.feature}
                             render = {this.state.renderTrees}
                         />
                         <Feature
                             // Tree 3 (right) - happy
                             source ={tree}
                             interactivity = {this.state.interactivity}
-                            translateY = {-430} translateX = {60} scale = {0.7}
-                            style={styles.view}
+                            translateY = {-110} translateX = {-60} scale = {0.7}
+                            style={styles.feature}
                             render = {this.state.renderTrees}
                         />
                         <Feature
                             // Tree (middle) - neutral
                             source ={tree2}
                             interactivity = {this.state.interactivity}
-                            translateY = {-485} scale = {0.8}
-                            style={styles.view}
+                            translateY = {-115} scale = {0.8}
+                            style={styles.feature}
                             render = {this.state.renderTrees2}
                         />
 
@@ -233,16 +233,16 @@ class Pal extends Component{
                             //top left
                             source = {star}
                             interactivity = {this.state.interactivity}
-                            translateY = {-340} translateX = {-130} scale = {0.6}
-                            style={styles.view}
+                            translateY = {-90} translateX = {-125} scale = {0.6}
+                            style={styles.feature}
                             render = {this.state.renderStars}
                         />
                         <Feature
                             //top right
                             source = {star}
                             interactivity = {this.state.interactivity}
-                            translateY = {-230} translateX = {120} scale = {0.4}
-                            style={styles.view}
+                            translateY = {-30} translateX = {120} scale = {0.4}
+                            style={styles.feature}
                             render = {this.state.renderStars}
                         />
 
@@ -250,8 +250,8 @@ class Pal extends Component{
                             //bottom left
                             source = {star}
                             interactivity = {this.state.interactivity}
-                            translateY = {-330} translateX = {-130} scale = {0.9}
-                            style={styles.view}
+                            translateY = {80} translateX = {-120} scale = {0.9}
+                            style={styles.feature}
                             render = {this.state.renderStars}
                         />
 
@@ -259,8 +259,8 @@ class Pal extends Component{
                             //bottom right
                             source = {star}
                             interactivity = {this.state.interactivity}
-                            translateY = {-480} translateX = {90} scale = {1.2}
-                            style={styles.view}
+                            translateY = {60} translateX = {100} scale = {1.2}
+                            style={styles.feature}
                             render = {this.state.renderStars}
                         />
 
