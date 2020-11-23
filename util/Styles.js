@@ -35,9 +35,8 @@ export const styles = StyleSheet.create({
     },
     view: {
       width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height * 2,
-      position: 'absolute',
-      resizeMode: 'center',
-      paddingTop: 220
+      height: Dimensions.get('window').width,
+      position: 'relative',
+      justifyContent: "center"
     },
   });
