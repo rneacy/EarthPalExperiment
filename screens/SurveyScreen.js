@@ -171,7 +171,16 @@ const SurveyScreen = ({navigation, route}) => {
 				}
 				updatedSurveyData.narratives[route.params.order[0]].push(newSurveyEntry);
 
-				//console.log(updatedSurveyData);
+				likertScores = { // reset likerts for next time
+					"valence": 1,
+					"arousal": 1,
+					"anxiety": 1,
+					"pride": 1,
+					"stress": 1,
+					"hope": 1,
+					"guilt": 1,
+					"compassion": 1
+				}
 
 				let newOrder = route.params.order;
 
