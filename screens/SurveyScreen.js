@@ -156,6 +156,7 @@ const SurveyScreen = ({navigation, route}) => {
 				let updatedSurveyData = route.params.surveyData;
 				let newSurveyEntry = {
 					narrative: route.params.order[0],
+					combo: route.params.combo,
 					sams: {
 						valence: likertScores["valence"],
 						arousal: likertScores["arousal"],
@@ -176,12 +177,22 @@ const SurveyScreen = ({navigation, route}) => {
 				let newOrder = route.params.order;
 				newOrder.shift() 
 				if(newOrder.length >= 1){
-					navigation.reset({
-						index: 0,
-						routes: [
-							{ name: "narrative", params: { order: newOrder, parsedPal: route.params.parsedPal, surveyData: updatedSurveyData }}
-						]
-					});
+					if(route.params.innerOrder.length >= 1) {
+						navigation.reset({
+							index: 0,
+							routes: [
+								{ name: "mainpal", params: { order: route.params.order, parsedPal: route.params.parsedPal, data: route.params.order[0] === 0 ? route.params.parsedPal : route.params.data, surveyData: updatedSurveyData, innerOrder: route.params.innerOrder}}
+							]
+						})
+					}
+					else{
+						navigation.reset({
+							index: 0,
+							routes: [
+								{ name: "narrative", params: { order: newOrder, parsedPal: route.params.parsedPal, surveyData: updatedSurveyData }}
+							]
+						});
+					}
 				}
 				else {
 					email(updatedSurveyData);
