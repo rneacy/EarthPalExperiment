@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       textAlign: "center",
-      padding: 20,
       backgroundColor: "#566A93"
     },
     titleText: {
