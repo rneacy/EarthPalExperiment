@@ -52,7 +52,13 @@ const MainPalScreen =  ({navigation, route}) => {
     // }
 
     return (
-        <View style={styles.main}>      
+        <View style={styles.main}>
+            <Text 
+                style={[styles.normalText, {transform:[{translateY: -90}]}]}
+            >
+                {combos[route.params.innerOrder[0]][1] === "inter" ? "Touch me!" : ""}
+            </Text>
+
             <Pal 
                 palScore={route.params.data} 
                 detail={combos[route.params.innerOrder[0]][0]} //this can be "basic", "medium" or "high"
