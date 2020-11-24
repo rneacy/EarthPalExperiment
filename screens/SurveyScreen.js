@@ -189,7 +189,7 @@ const SurveyScreen = ({navigation, route}) => {
 				}
 
 				let newOrder = route.params.order;
-				let newCount = route.params.count + 1;
+				let newCount = route.params.surveyData.count + 1;
 				updatedSurveyData.count = newCount;
 				if(route.params.innerOrder.length >= 1) {
 					navigation.reset({
