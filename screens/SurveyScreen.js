@@ -48,6 +48,12 @@ let likertScores = {
 }
 
 const SurveyScreen = ({navigation, route}) => {
+
+	React.useEffect(() => {
+		console.log("hi")
+		navigation.setOptions({title:"Survey (" + route.params.surveyData.count + "/40)"})
+	}, [])
+
 	return (
 	<ScrollView style = {{backgroundColor: '#fff',}}>
 		<Text style = {styles.title}> Section 1 - Valence & Arousal </Text>
@@ -183,7 +189,8 @@ const SurveyScreen = ({navigation, route}) => {
 				}
 
 				let newOrder = route.params.order;
-
+				let newCount = route.params.count + 1;
+				updatedSurveyData.count = newCount;
 				if(route.params.innerOrder.length >= 1) {
 					navigation.reset({
 						index: 0,
@@ -204,6 +211,7 @@ const SurveyScreen = ({navigation, route}) => {
 						});
 					}
 					else {
+						delete updatedSurveyData.count;
 						email(updatedSurveyData);
 						navigation.reset({
 							index: 0,
