@@ -104,7 +104,7 @@ class Pal extends Component{
             if(this.state.valenceIndex == 2 || this.state.valenceIndex == 5){
                 //sad embellishments
                 this.state.renderTrash = true
-                this.props.renderClouds = true
+                this.state.renderClouds = true
                 if(this.props.detail == "high"){
                     this.state.renderGlow = true
                     this.state.renderFlies = true
