@@ -1,4 +1,4 @@
-# EarthPal
+# EarthPal Experiment Repo
 SCC402 Project
 
 ![EarthPal](https://user-images.githubusercontent.com/37414095/98237520-ec7d0280-1f5c-11eb-99f5-8af01a77f525.png)
